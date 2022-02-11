@@ -54,6 +54,21 @@ snacks.delete("/:id", async (req, res) => {
 	}
 });
 
+snacks.post("/", async (req, res) => {
+	const { body } = req;
+	console.log(body);
+	try {
+		const createdSnack = await createSnack(body);
+		if (createdSnack.id) {
+			res.status(200).json({ success: true, payload: createdSnack });
+		} else {
+			res.status(404).json({ success: false, payload: "/not found/" });
+		}
+	} catch (err) {
+		console.log(err);
+	}
+});
+
 // snacks.post("/", async (req, res) => {
 // 	const { body } = req;
 // 	console.log(body);
