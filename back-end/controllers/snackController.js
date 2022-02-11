@@ -1,10 +1,13 @@
 const express = require("express");
-const { one } = require("../db/dbConfig");
 const snacks = express.Router();
-const { getAllSnacks, getSnack } = require("../queries/snacks");
+const {
+	getAllSnacks,
+	getSnack,
+	createSnack,
+	deletedSnack,
+} = require("../queries/snacks");
 
 // get all snacks
-
 snacks.get("/", async (req, res) => {
 	try {
 		const allSnacks = await getAllSnacks();
@@ -22,6 +25,7 @@ snacks.get("/", async (req, res) => {
 	}
 });
 
+// get indivigual snack
 snacks.get("/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -36,6 +40,43 @@ snacks.get("/:id", async (req, res) => {
 	}
 });
 
-module.exports = snacks;
+snacks.delete("/:id", async (req, res) => {
+	const { id } = req.params;
+	try {
+		const deleteSnack = await deletedSnack(id);
+		if (deleteSnack.id) {
+			res.status(200).json({ success: true, payload: deleteSnack });
+		} else {
+			res.status(404).json({ success: false, payload: "/not found/" });
+		}
+	} catch (err) {
+		console.log(err);
+	}
+});
 
-// .payload).toMatch(/not found/)
+// snacks.post("/", async (req, res) => {
+// 	const { body } = req;
+// 	console.log(body);
+// 	try {
+// 		const createdSnack = await createSnack(body);
+
+// 		if (createSnack.id) {
+// 			if (body.name && body.image) {
+// 				res.status(200).json({ success: true, payload: createdSnack });
+// 			} else if (typeof body.name !== "string") {
+// 				res.status(422).json({ error: "Must include name field" });
+// 			} else if (typeof body.name === "string" && body.image === "") {
+// 				body.image =
+// 					"https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image";
+// 				res.status(200).json({ success: true, payload: createdSnack });
+// 			}
+// 			res.status(200).json({ success: true, payload: createdSnack });
+// 		} else {
+// 			res.status(404).json({ success: false, payload: "/not found/" });
+// 		}
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+// });
+
+module.exports = snacks;
