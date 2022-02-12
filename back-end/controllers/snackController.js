@@ -6,12 +6,12 @@ const {
 	createSnack,
 	deletedSnack,
 } = require("../queries/snacks");
+const validateSpace  = require("../validations/stringValidation.js");
 
 // get all snacks
 snacks.get("/", async (req, res) => {
 	try {
 		const allSnacks = await getAllSnacks();
-
 		if (allSnacks[0]) {
 			// console.log(allSnacks);
 			res.status(200).json({ success: true, payload: allSnacks });
@@ -56,7 +56,8 @@ snacks.delete("/:id", async (req, res) => {
 
 snacks.post("/", async (req, res) => {
 	const { body } = req;
-	console.log(body);
+	body.name = validateSpace(body)
+	
 	try {
 		const createdSnack = await createSnack(body);
 		if (createdSnack.id) {
