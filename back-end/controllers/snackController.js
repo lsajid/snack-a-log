@@ -9,8 +9,6 @@ const {
 const validateSpace = require("../validations/stringValidation.js");
 const confirmHealth = require("../confirmHealth.js");
 
-const { confirmHealth } = require("../confirmHealth");
-
 // get all snacks
 snacks.get("/", async (req, res) => {
 	try {
