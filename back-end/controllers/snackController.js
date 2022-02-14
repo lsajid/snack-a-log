@@ -6,6 +6,8 @@ const {
 	createSnack,
 	deletedSnack,
 } = require("../queries/snacks");
+const validateSpace = require("../validations/stringValidation.js");
+const confirmHealth = require("../confirmHealth.js");
 
 const { confirmHealth } = require("../confirmHealth");
 
@@ -13,7 +15,6 @@ const { confirmHealth } = require("../confirmHealth");
 snacks.get("/", async (req, res) => {
 	try {
 		const allSnacks = await getAllSnacks();
-
 		if (allSnacks[0]) {
 			// console.log(allSnacks);
 			res.status(200).json({ success: true, payload: allSnacks });
@@ -58,6 +59,7 @@ snacks.delete("/:id", async (req, res) => {
 
 snacks.post("/", async (req, res) => {
 	const { body } = req;
+	body.name = validateSpace(body);
 	body.is_healthy = confirmHealth(body);
 	try {
 		const createdSnack = await createSnack(body);
@@ -70,28 +72,5 @@ snacks.post("/", async (req, res) => {
 		console.log(err);
 	}
 });
-
-// snacks.post("/", async (req, res) => {
-// 	const { body } = req;
-// 	console.log(body);
-// 	try {
-// 		const createdSnack = await createSnack(body);
-
-// 		if (createdSnack.id) {
-// 			if (typeof body.name !== "string") {
-// 				res.status(422).json({ error: "Must include name field" });
-// 			} else if (typeof body.name === "string" && body.image === "") {
-// 				body.image =
-// 					"https://dummyimage.com/400x400/6e6c6e/e9e9f5.png&text=No+Image";
-// 				res.status(200).json({ success: true, payload: createdSnack });
-// 			}
-// 			res.status(200).json({ success: true, payload: createdSnack });
-// 		} else {
-// 			res.status(404).json({ success: false, payload: "/not found/" });
-// 		}
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// });
 
 module.exports = snacks;
