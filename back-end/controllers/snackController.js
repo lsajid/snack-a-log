@@ -7,6 +7,8 @@ const {
 	deletedSnack,
 } = require("../queries/snacks");
 
+const { confirmHealth } = require("../confirmHealth");
+
 // get all snacks
 snacks.get("/", async (req, res) => {
 	try {
@@ -56,7 +58,7 @@ snacks.delete("/:id", async (req, res) => {
 
 snacks.post("/", async (req, res) => {
 	const { body } = req;
-	console.log(body);
+	body.is_healthy = confirmHealth(body);
 	try {
 		const createdSnack = await createSnack(body);
 		if (createdSnack.id) {
@@ -75,10 +77,8 @@ snacks.post("/", async (req, res) => {
 // 	try {
 // 		const createdSnack = await createSnack(body);
 
-// 		if (createSnack.id) {
-// 			if (body.name && body.image) {
-// 				res.status(200).json({ success: true, payload: createdSnack });
-// 			} else if (typeof body.name !== "string") {
+// 		if (createdSnack.id) {
+// 			if (typeof body.name !== "string") {
 // 				res.status(422).json({ error: "Must include name field" });
 // 			} else if (typeof body.name === "string" && body.image === "") {
 // 				body.image =
