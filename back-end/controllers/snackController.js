@@ -6,7 +6,7 @@ const {
 	createSnack,
 	deletedSnack,
 } = require("../queries/snacks");
-const validateSpace  = require("../validations/stringValidation.js");
+const validateSpace = require("../validations/stringValidation.js");
 const confirmHealth = require("../confirmHealth.js");
 
 // get all snacks
@@ -57,7 +57,7 @@ snacks.delete("/:id", async (req, res) => {
 
 snacks.post("/", async (req, res) => {
 	const { body } = req;
-	body.name = validateSpace(body)
+	body.name = validateSpace(body);
 	body.is_healthy = confirmHealth(body);
 	try {
 		const createdSnack = await createSnack(body);
@@ -70,6 +70,5 @@ snacks.post("/", async (req, res) => {
 		console.log(err);
 	}
 });
-
 
 module.exports = snacks;
