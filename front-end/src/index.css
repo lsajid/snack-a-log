@@ -1,0 +1,34 @@
+body {
+	font-family: Overlock, cursive;
+}
+h1 {
+	font-family: Carter One, cursive;
+}
+main {
+	width: 90%;
+	margin: auto;
+}
+a {
+	text-decoration: none;
+	color: rgb(235, 94, 40);
+}
+h4 {
+	margin: 0;
+	font-size: 1em;
+	text-align: center;
+}
+article {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 1em;
+}
+
+article div {
+	width: 150px;
+	padding: 1em;
+	background-color: rgb(255, 252, 242);
+}
+.Snacks img {
+	width: 150px;
+}
