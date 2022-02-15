@@ -1,36 +1,50 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
 
 function SnackEditForm() {
+  const { id } = useParams();
+  let navigate = useNavigate();
+
   const [ snack, setSnack ] = useState({
     name: "",
     image: "",
     fiber: null,
     protein: null,
     added_sugar: null,
-    is_healthy: null
+    is_healthy: false
   });
 
-  let navigate = useNavigate();
-
   const updateSnack = (updatedSnack) => {
-
-  }
+    axios
+      .put(`${API}/snacks/${id}`, updatedSnack)
+      .then(
+        () => {
+          navigate(`/snacks/${id}`);
+        },
+        (error) => console.error(error)
+      )
+      .catch((c) => console.warn("catch", c));
+  };
 
   const handleTextChange = (event) => {
-
-  }
+    setSnack({...snack, [event.target.id]: event.target.value });
+  };
 
   useEffect(() => {
-
+    axios.get(`${API}/snacks/${id}`).then(
+      (res) => setSnack(res.data.payload),
+      (error) => navigate(`not-found`)
+    ).catch((err) => console.log(err));
   }, [])
 
   const handleSubmit = (event) => {
-
-  }
+    event.preventDefault();
+    updateSnack(snack, id);
+    navigate(`/snacks`)
+  };
 
   return (
     <div>
@@ -40,7 +54,8 @@ function SnackEditForm() {
           id="name"
           type="text"
           value={snack.name}
-          onChange={handleTextChange} 
+          onChange={handleTextChange}
+          required 
         />
         <label htmlFor="image">Image</label>
         <input 
