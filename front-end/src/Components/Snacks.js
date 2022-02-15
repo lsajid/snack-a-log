@@ -38,9 +38,7 @@ function Snacks() {
 										</div>
 									) : (
 										<div>
-											<h4 font-family="Overlock, cursive" alt="unhealthy food">
-												{e.name}{" "}
-											</h4>
+											<h4 alt="unhealthy food">{e.name} </h4>
 											<img height="50px" src={regular} />
 										</div>
 									)}
