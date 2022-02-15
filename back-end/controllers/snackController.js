@@ -5,6 +5,7 @@ const {
 	getSnack,
 	createSnack,
 	deletedSnack,
+	updateSnack,
 } = require("../queries/snacks");
 const validateSpace = require("../validations/stringValidation.js");
 const confirmHealth = require("../confirmHealth.js");
@@ -68,6 +69,17 @@ snacks.post("/", async (req, res) => {
 		}
 	} catch (err) {
 		console.log(err);
+	}
+});
+
+snacks.put("/:id", async (req, res) => {
+	const { id } = req.params;
+	const { body } = req;
+	const updatedSnack = await updateSnack(id, body);
+	if (updatedSnack.id) {
+		res.status(200).json(updatedSnack);
+	} else {
+		res.status(404).json({ error: "Bookmark no found " });
 	}
 });
 
