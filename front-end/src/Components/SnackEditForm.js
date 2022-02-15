@@ -1,8 +1,79 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const API = process.env.REACT_APP_API_URL;
 
 function SnackEditForm() {
+  const [ snack, setSnack ] = useState({
+    name: "",
+    image: "",
+    fiber: null,
+    protein: null,
+    added_sugar: null,
+    is_healthy: null
+  });
+
+  let navigate = useNavigate();
+
+  const updateSnack = (updatedSnack) => {
+
+  }
+
+  const handleTextChange = (event) => {
+
+  }
+
+  useEffect(() => {
+
+  }, [])
+
+  const handleSubmit = (event) => {
+
+  }
+
   return (
-    <div>SnackEditForm</div>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          value={snack.name}
+          onChange={handleTextChange} 
+        />
+        <label htmlFor="image">Image</label>
+        <input 
+          id="image"
+          type="text"
+          value={snack.image}
+          onChange={handleTextChange} 
+        />
+        <label htmlFor="fiber">Fiber</label>
+        <input 
+          id="fiber"
+          type="number"
+          value={snack.fiber}
+          onChange={handleTextChange} 
+        />
+        <label htmlFor="protein">Protein</label>
+        <input
+          id="protein"
+          type="number"
+          value={snack.protein} 
+          onChange={handleTextChange} 
+        />
+        <label htmlFor="added_sugar">Added Sugar</label>
+        <input 
+          id="added_sugar"
+          type="number"
+          value={snack.added_sugar} 
+          onChange={handleTextChange} 
+        />
+        <br />
+        <input type="submit"/>
+      </form>
+    </div>
   )
 }
 

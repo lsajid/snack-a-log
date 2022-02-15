@@ -55,7 +55,7 @@ function SnackDetails() {
 				<Link to={`/snacks/${id}/edit`}>Edit</Link>
 			</button>
 			<button>
-				<Link to="/snacks">Back</Link>
+				<Link to="/snacks"> <a href="/snacks">Back</a></Link>
 			</button>
 		</aside>
 	);
