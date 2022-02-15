@@ -28,11 +28,11 @@ function Snacks() {
 					return (
 						<article key={e.id} className="Snack">
 							<Link to={`/snacks/${e.id}`}>
-								<div>
+								
 									<img src={e.image} alt="Snack picture" />
 									<h4><HeartHealth snackHealth={e.is_healthy}/></h4>
 									<h4>{e.name}</h4>
-								</div>
+								
 							</Link>
 						</article>
 					);
