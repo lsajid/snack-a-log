@@ -22,7 +22,7 @@ function SnackEditForm() {
       .put(`${API}/snacks/${id}`, updatedSnack)
       .then(
         () => {
-          navigate(`/snacks/${id}`);
+          navigate(`/snacks`);
         },
         (error) => console.error(error)
       )
@@ -35,7 +35,9 @@ function SnackEditForm() {
 
   useEffect(() => {
     axios.get(`${API}/snacks/${id}`).then(
-      (res) => setSnack(res.data.payload),
+      (res) => {
+        setSnack(res.data.payload)
+      },
       (error) => navigate(`not-found`)
     ).catch((err) => console.log(err));
   }, [])
