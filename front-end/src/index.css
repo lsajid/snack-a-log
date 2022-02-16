@@ -5,15 +5,15 @@ h1 {
 	font-family: Carter One, cursive;
 }
 main {
-	width: 90%;
-	margin: auto;
+	width: 90px;
+	margin: auto 0px;
 }
 a {
 	text-decoration: none;
 	color: rgb(235, 94, 40);
 }
 h4 {
-	margin: 0;
+	margin: 0px;
 	font-size: 1em;
 	text-align: center;
 }
@@ -29,6 +29,21 @@ article div {
 	padding: 1em;
 	background-color: rgb(255, 252, 242);
 }
-.Snacks img {
+
+.Snacks{
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
+	align-items: center;
+}
+
+.Snack img {
+	height: auto;
 	width: 150px;
+	display: flex;
+}
+
+.Snack div {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
