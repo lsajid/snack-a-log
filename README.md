@@ -1,5 +1,9 @@
 # Snack-A-Log Pair Programming Lab
 
+## Laiba Sajid and Nima Sherpa Deplopyed Sites
+- [ Back-end ](https://ln-snack-log-be.herokuapp.com/)
+- [ Front-end ](https://620d18a18d2d0818e15170ff--blissful-ptolemy-2f5828.netlify.app/)
+
 ## Overview
 
 In this lab activity, you will practice collaborating on a project. You'll be building an app to track snacks and whether or not they are healthy.
