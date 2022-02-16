@@ -3,6 +3,7 @@
 ## Laiba Sajid and Nima Sherpa Deplopyed Sites
 - [ Back-end ](https://ln-snack-log-be.herokuapp.com/)
 - [ Front-end ](https://620d18a18d2d0818e15170ff--blissful-ptolemy-2f5828.netlify.app/)
+** View Index page when you click "snacks" in the top left corner
 
 ## Overview
 
